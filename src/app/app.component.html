@@ -1,3 +1,6 @@
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 <div class="container">
   <div class="todo-app">
 
@@ -15,9 +18,9 @@
     <!-- Task list -->
     <ul class="list-container">
       <!-- Uncompleted Task -->
-      <li class="list-item" *ngFor="let task of tasks" [class.completed]="task.isComplete">
-        <input type="checkbox" [checked]="task.isComplete" (click)="toggleTask(task)">
-        <label>{{task.taskText}}</label>
+      <li class="list-item" *ngFor="let task of tasks" (click)="toggleTask(task)">
+        <span class="material-symbols-outlined btn-delete">delete</span>
+        <label [class.completed]="task.isComplete">{{task.taskText}}</label>
       </li>
     </ul>
 

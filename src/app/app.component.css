@@ -98,13 +98,28 @@ li {
 .list-item {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     margin-bottom: 7px;
+}
+
+.list-item,
+.list-item *:hover {
+    cursor: pointer;
+}
+
+.btn-delete {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    opacity: 1;
+    color: #ff5945;
 }
 
 .list-item label {
     white-space: nowrap;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .completed {
