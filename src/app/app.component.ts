@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Task } from './DataType';
@@ -14,19 +14,10 @@ import { TasksService } from './tasks.service';
 })
 export class AppComponent {
   constructor(private tasksService: TasksService) {
-    this.tasksService.getTaskObjects().subscribe((taskList) => {
-      console.log(taskList);
-      this.tasks = taskList;
-    }
-    );
-
-    this.tasksService.fetchTasks().subscribe((taskList) => {
-      console.log(taskList);
-    }
-    );
+    this.getTasksFromDB();
   }
 
-  @Input() newTaskText: string = '';
+  newTaskText: string = '';
 
   tasks: Task[] = []
 
@@ -35,6 +26,17 @@ export class AppComponent {
   }
 
   addNewTask() {
-    this.tasks.push(new Task(this.newTaskText, false));
+    this.tasksService.addTask(this.newTaskText).subscribe(() => {
+      this.getTasksFromDB();
+      this.newTaskText = '';
+    });
+  }
+
+  getTasksFromDB() {
+    this.tasksService.getTaskObjects().subscribe((taskList) => {
+      console.log(taskList);
+      this.tasks = taskList;
+    }
+    );
   }
 }
