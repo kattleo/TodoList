@@ -1,17 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-
-class Task {
-  public taskText: string;
-  public isComplete: boolean;
-
-  constructor(taskText: string, isComplete: boolean) {
-    this.taskText = taskText;
-    this.isComplete = isComplete;
-  }
-}
+import { Task } from './DataType';
 
 @Component({
   selector: 'app-root',
