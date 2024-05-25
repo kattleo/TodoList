@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Task } from './DataType';
@@ -28,5 +28,15 @@ export class TasksService {
 
   addTask(taskText: string): Observable<any> {
     return this.http.post(this.base_url + 'tasks/create', { "taskText": taskText });
+  }
+
+  removeTask(taskId: number): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: { id: taskId }
+    };
+    return this.http.delete(`${this.base_url}tasks/remove`, options);
   }
 }

@@ -32,6 +32,14 @@ export class AppComponent {
     });
   }
 
+  removeTask(taskId?: number) {
+    if (taskId) {
+      this.tasksService.removeTask(taskId).subscribe(() => {
+        this.getTasksFromDB();
+      });
+    }
+  }
+
   getTasksFromDB() {
     this.tasksService.getTaskObjects().subscribe((taskList) => {
       console.log(taskList);

@@ -18,9 +18,9 @@
     <!-- Task list -->
     <ul class="list-container">
       <!-- Uncompleted Task -->
-      <li class="list-item" *ngFor="let task of tasks" (click)="toggleTask(task)">
-        <span class="material-symbols-outlined btn-delete">delete</span>
-        <label [class.completed]="task.isComplete">{{task.taskText}}</label>
+      <li class="list-item" *ngFor="let task of tasks">
+        <span class="material-symbols-outlined btn-delete" (click)="removeTask(task.id)">delete</span>
+        <label (click)="toggleTask(task)" [class.completed]="task.isComplete">{{task.taskText}}</label>
       </li>
     </ul>
 

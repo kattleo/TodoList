@@ -119,10 +119,12 @@ li {
 
 .list-item label {
     white-space: nowrap;
-    font-size: 25px;
+    font-size: 22px;
+    color: #2c2c2c;
 }
 
 .completed {
     color: #555;
+    opacity: 0.8;
     text-decoration: line-through;
 }
