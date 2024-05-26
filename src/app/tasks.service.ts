@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 export class TasksService {
   constructor(private http: HttpClient) { }
 
-  // get as an alternative to const to avoid accidental changes
   private readonly base_url = 'http://127.0.0.1:5000/'
 
   fetchTasks(): Observable<any> {
@@ -20,7 +19,7 @@ export class TasksService {
   }
 
   removeTask(taskId: number): Observable<any> {
-    // body of options parameter to provide taskId through DELETE method
+    // body of delete() options parameter to provide taskId through DELETE method
     return this.http.delete(`${this.base_url}tasks/remove`, { body: { id: taskId } });
   }
 
