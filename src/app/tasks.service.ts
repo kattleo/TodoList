@@ -16,16 +16,6 @@ export class TasksService {
     return this.http.get<any[]>(this.base_url + 'tasks')
   }
 
-  getTaskObjects(): Observable<Task[]> {
-    return this.fetchTasks().pipe(
-      map(tasksJSON => this.parseTasksToObjects(tasksJSON))
-    );
-  }
-
-  private parseTasksToObjects(tasksJSON: any[]): Task[] {
-    return tasksJSON.map(task => new Task(task['taskText'], task['done'], task['id']));
-  }
-
   addTask(taskText: string): Observable<any> {
     return this.http.post(this.base_url + 'tasks/create', { "taskText": taskText });
   }

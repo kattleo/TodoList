@@ -46,7 +46,7 @@ export class AppComponent {
   }
 
   getTasksFromDB() {
-    this.tasksService.getTaskObjects().pipe(
+    this.tasksService.fetchTasks().pipe(
       catchError((err: any) => {
         this.errorWhileFetchingData = err;
         return of();
