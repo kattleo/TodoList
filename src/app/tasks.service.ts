@@ -20,7 +20,7 @@ export class TasksService {
   }
 
   removeTask(taskId: number): Observable<any> {
-    // added body of options parameter to provide taskId through DELETE method
+    // body of options parameter to provide taskId through DELETE method
     return this.http.delete(`${this.base_url}tasks/remove`, { body: { id: taskId } });
   }
 

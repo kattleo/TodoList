@@ -24,13 +24,10 @@ export class AppComponent {
 
   tasks: Task[] = []
 
-  toggleTask(task: Task) {
-    task.isComplete = !task.isComplete;
-    if (task.id) {
-      this.tasksService.updateTaskState(task.id).subscribe(() => {
-        this.getTasksFromDB();
-      })
-    }
+  toggleTask(taskId: number) {
+    this.tasksService.updateTaskState(taskId).subscribe(() => {
+      this.getTasksFromDB();
+    })
   }
 
   addNewTask() {
@@ -42,12 +39,10 @@ export class AppComponent {
     }
   }
 
-  removeTask(taskId?: number) {
-    if (taskId) {
-      this.tasksService.removeTask(taskId).subscribe(() => {
-        this.getTasksFromDB();
-      });
-    }
+  removeTask(taskId: number) {
+    this.tasksService.removeTask(taskId).subscribe(() => {
+      this.getTasksFromDB();
+    });
   }
 
   getTasksFromDB() {
