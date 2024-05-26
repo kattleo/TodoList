@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Task } from './DataType';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +20,7 @@ export class TasksService {
   }
 
   removeTask(taskId: number): Observable<any> {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      body: { id: taskId }
-    };
-    return this.http.delete(`${this.base_url}tasks/remove`, options);
+    // added body of options parameter to provide taskId through DELETE method
+    return this.http.delete(`${this.base_url}tasks/remove`, { body: { id: taskId } });
   }
 }
