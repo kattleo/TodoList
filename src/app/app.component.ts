@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Task } from './DataType';
 import { TasksService } from './tasks.service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent {
   constructor(private tasksService: TasksService) {
     this.getTasksFromDB();
   }
+
+  errorWhileFetchingData?: Error;
 
   newTaskText: string = '';
 
@@ -41,10 +44,15 @@ export class AppComponent {
   }
 
   getTasksFromDB() {
-    this.tasksService.getTaskObjects().subscribe((taskList) => {
-      console.log(taskList);
-      this.tasks = taskList;
-    }
-    );
+    this.tasksService.getTaskObjects().pipe(
+      catchError((err: any) => {
+        this.errorWhileFetchingData = err;
+        return of();
+      })
+    )
+      .subscribe({
+        next: (value) => this.tasks = value,
+        error: (err) => console.log('HTTP Error', err)
+      });
   }
 }

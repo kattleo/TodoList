@@ -9,20 +9,30 @@
       <h2>To-Do App</h2>
     </div>
 
-    <!-- Task Input -->
-    <div class="task-input">
-      <input [(ngModel)]="newTaskText" type="text" placeholder="Add your tasks">
-      <button (click)="addNewTask()">Add</button>
-    </div>
+    <div *ngIf="errorWhileFetchingData; then showInfoMessage else showApp"></div>
 
-    <!-- Task list -->
-    <ul class="list-container">
-      <!-- Uncompleted Task -->
-      <li class="list-item" *ngFor="let task of tasks">
-        <span class="material-symbols-outlined btn-delete" (click)="removeTask(task.id)">delete</span>
-        <label (click)="toggleTask(task)" [class.completed]="task.isComplete">{{task.taskText}}</label>
-      </li>
-    </ul>
+    <ng-template #showApp>
+      <!-- Task Input -->
+      <div class="task-input">
+        <input [(ngModel)]="newTaskText" type="text" placeholder="Add your tasks">
+        <button (click)="addNewTask()">Add</button>
+      </div>
+
+      <!-- Task list -->
+      <ul class="list-container">
+        <!-- Uncompleted Task -->
+        <li class="list-item" *ngFor="let task of tasks">
+          <span class="material-symbols-outlined btn-delete" (click)="removeTask(task.id)">delete</span>
+          <label (click)="toggleTask(task)" [class.completed]="task.isComplete">{{task.taskText}}</label>
+        </li>
+      </ul>
+    </ng-template>
+
+    <ng-template #showInfoMessage>
+      <span>Something went wrong:</span>
+      <span>{{errorWhileFetchingData?.message}}</span>
+    </ng-template>
+
 
   </div>
 </div>
