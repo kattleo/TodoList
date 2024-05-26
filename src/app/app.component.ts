@@ -29,10 +29,12 @@ export class AppComponent {
   }
 
   addNewTask() {
-    this.tasksService.addTask(this.newTaskText).subscribe(() => {
-      this.getTasksFromDB();
-      this.newTaskText = '';
-    });
+    if (this.newTaskText != '') {
+      this.tasksService.addTask(this.newTaskText).subscribe(() => {
+        this.getTasksFromDB();
+        this.newTaskText = '';
+      });
+    }
   }
 
   removeTask(taskId?: number) {
