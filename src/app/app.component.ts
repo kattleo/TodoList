@@ -26,6 +26,11 @@ export class AppComponent {
 
   toggleTask(task: Task) {
     task.isComplete = !task.isComplete;
+    if (task.id) {
+      this.tasksService.updateTaskState(task.id).subscribe(() => {
+        this.getTasksFromDB();
+      })
+    }
   }
 
   addNewTask() {
