@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { Task } from './DataType';
+import { Task } from '../DataType';
 import { TasksService } from './tasks.service';
 import { catchError, of } from 'rxjs';
 
@@ -52,9 +52,8 @@ export class AppComponent {
         return of();
       })
     )
-      .subscribe({
-        next: (value) => this.tasks = value,
-        error: (err) => console.log('HTTP Error', err)
-      });
+      .subscribe((tasks: Task[]) => {
+        this.tasks = tasks;
+      })
   }
 }

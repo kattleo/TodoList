@@ -9,10 +9,15 @@
 
     <div *ngIf="errorWhileFetchingData; then showInfoMessage else showApp"></div>
 
+    <ng-template #showInfoMessage>
+      <span>Something went wrong:</span>
+      <span>{{errorWhileFetchingData?.message}}</span>
+    </ng-template>
+
     <ng-template #showApp>
       <!-- Task Input -->
       <div class="task-input">
-        <input [(ngModel)]="newTaskText" type="text" placeholder="Add your tasks">
+        <input [(ngModel)]="newTaskText" type="text" placeholder="Enter new Task">
         <button (click)="addNewTask()">Add</button>
       </div>
 
@@ -25,12 +30,6 @@
         </li>
       </ul>
     </ng-template>
-
-    <ng-template #showInfoMessage>
-      <span>Something went wrong:</span>
-      <span>{{errorWhileFetchingData?.message}}</span>
-    </ng-template>
-
 
   </div>
 </div>
