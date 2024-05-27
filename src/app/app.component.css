@@ -14,10 +14,9 @@
 }
 
 .todo-app {
-    width: 100%;
-    max-width: 500px;
+    width: 40%;
     background-color: #fff;
-    padding: 40px;
+    padding: 2.5em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -30,16 +29,8 @@
     gap: 1rem;
     align-items: center;
     font-family: 'Roboto', sans-serif;
-    font-size: 21px;
-}
-
-.app-title h2,
-.app-title i {
+    font-size: 1.8rem;
     color: #002765;
-}
-
-.app-title i {
-    font-size: 26px;
 }
 
 .task-input {
@@ -50,26 +41,25 @@
     border-radius: 30px;
 }
 
-input {
+.task-input input {
     width: 100%;
     border: none;
     outline: none;
     background-color: transparent;
-    padding: 12px;
-    font-size: 17px;
-    padding-left: 20px;
+    font-size: 1.1rem;
+    padding: 0 0.8em;
     color: rgb(64, 64, 64);
 }
 
-button {
+.task-input button {
     border: none;
     cursor: pointer;
     outline: none;
-    padding: 15px 50px;
+    padding: 0.8em 3em;
     border-radius: 30px;
     background-color: #ff5945;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.1rem;
     transition: all .25s ease;
 }
 
@@ -88,13 +78,13 @@ li {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.6rem;
 }
 
 .list-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 7px;
+    gap: 0.6rem;
 }
 
 .list-item,
@@ -114,7 +104,7 @@ li {
 
 .list-item label {
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #2c2c2c;
 }
 
@@ -124,51 +114,30 @@ li {
     text-decoration: line-through;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .todo-app {
-        padding: 30px;
-    }
-
-    .task-input button {
-        padding: 10px 30px;
-        font-size: 16px;
-    }
-
-    .list-item label {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .todo-app {
-        padding: 20px;
+        padding: 1.5em;
     }
 
     .task-input {
         flex-direction: column;
-        gap: 10px;
     }
 
     .task-input input {
-        padding: 10px;
+        width: 90%;
+        padding: 0.8em 0;
     }
 
     .task-input button {
-        padding: 10px;
         width: 100%;
-        font-size: 16px;
+        font-size: 0.9rem;
     }
 
     .app-title {
-        font-size: 18px;
-    }
-
-    .app-title h2 {
-        font-size: 24px;
+        font-size: 1.8rem;
     }
 
     .list-item label {
-        font-size: 16px;
+        font-size: 1.1rem;
     }
 }
