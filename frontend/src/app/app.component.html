@@ -1,0 +1,35 @@
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<div class="container">
+  <div class="todo-app">
+
+    <!-- Title -->
+    <h2 class="app-title">To-Do List</h2>
+
+    <div *ngIf="errorWhileFetchingData; then showInfoMessage else showApp"></div>
+
+    <ng-template #showInfoMessage>
+      <span>Something went wrong:</span>
+      <span>{{errorWhileFetchingData?.message}}</span>
+    </ng-template>
+
+    <ng-template #showApp>
+      <!-- Task Input -->
+      <div class="task-input">
+        <input [(ngModel)]="newTaskText" type="text" placeholder="Enter new Task">
+        <button (click)="addNewTask()">Add</button>
+      </div>
+
+      <!-- Task list -->
+      <ul class="list-container">
+        <!-- Uncompleted Task -->
+        <li class="list-item" *ngFor="let task of tasks">
+          <span class="material-symbols-outlined btn-delete" (click)="removeTask(task.id)">delete</span>
+          <label (click)="toggleTask(task.id)" [class.completed]="task.isComplete">{{task.taskText}}</label>
+        </li>
+      </ul>
+    </ng-template>
+
+  </div>
+</div>
