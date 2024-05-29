@@ -3,6 +3,7 @@ from flask_restful import reqparse
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from flask_cors import CORS
+import os
 
 
 class Base(DeclarativeBase):
@@ -14,7 +15,8 @@ db = SQLAlchemy(model_class=Base)
 # create the Flask app
 app = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+file_name = "database.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{file_name}"
 # handle CORS (for simplicity, every origin is allowed)
 CORS(app)
 db.init_app(app)
@@ -33,12 +35,14 @@ class Task(db.Model):
         }
 
 
-# execute only once to initially initialize DB with its Model
-# with app.app_context():
-#     db.create_all()
+# check if /isntance/database_file_name already exists to initialize Data Base with its Model only once
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance', file_name)
+if os.path.exists(file_path):
+    with app.app_context():
+        db.create_all()
 
 
-# Create Request Parsers
+# create Request Parsers
 request_parser = reqparse.RequestParser()
 request_parser.add_argument("taskText", type=str, help="Task Text")
 request_parser.add_argument("id", type=str, help="Task ID")
@@ -92,4 +96,4 @@ def update_task():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
