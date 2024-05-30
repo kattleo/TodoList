@@ -15,8 +15,8 @@ db = SQLAlchemy(model_class=Base)
 # create the Flask app
 app = Flask(__name__)
 # configure the SQLite database, relative to the app instance folder
-file_name = "database.sqlite"
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{file_name}"
+database_file_name = "database.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{database_file_name}"
 # handle CORS (for simplicity, every origin is allowed)
 CORS(app)
 db.init_app(app)
@@ -36,7 +36,7 @@ class Task(db.Model):
 
 
 # check if /isntance/database_file_name already exists to initialize Data Base with its Model only once
-file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance', file_name)
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'instance', database_file_name)
 if os.path.exists(file_path):
     with app.app_context():
         db.create_all()
