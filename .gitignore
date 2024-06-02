@@ -14,6 +14,7 @@ yarn-error.log
 
 # IDEs and editors
 /Frontend/.idea/
+/Backend/.idea/
 .project
 .classpath
 /Frontend/.c9/
@@ -48,28 +49,6 @@ Thumbs.db
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-# User-specific stuff
-/Backend/.idea/**/workspace.xml
-/Backend/.idea/**/tasks.xml
-/Backend/.idea/**/usage.statistics.xml
-/Backend/.idea/**/dictionaries
-/Backend/.idea/**/shelf
-
-# Generated files
-/Backend/.idea/**/contentModel.xml
-
-# Sensitive or high-churn files
-/Backend/.idea/**/dataSources/
-/Backend/.idea/**/dataSources.ids
-/Backend/.idea/**/dataSources.local.xml
-/Backend/.idea/**/sqlDataSources.xml
-/Backend/.idea/**/dynamic.xml
-/Backend/.idea/**/uiDesigner.xml
-/Backend/.idea/**/dbnavigator.xml
-
-# Editor-based Rest Client
-/Backend/.idea/httpRequests
 
 
 ### Python ###
