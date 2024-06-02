@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Task } from '../DataType';
 import { TasksService } from './tasks.service';
-import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent {
     this.getTasksFromDB();
   }
 
-  errorWhileFetchingData?: Error;
+  errorWhileFetchingData?: string;
 
   newTaskText: string = '';
 
@@ -46,14 +45,17 @@ export class AppComponent {
   }
 
   getTasksFromDB() {
-    this.tasksService.fetchTasks().pipe(
-      catchError((err: any) => {
-        this.errorWhileFetchingData = err;
-        return of();
-      })
-    )
-      .subscribe((tasks: Task[]) => {
-        this.tasks = tasks;
-      })
+    this.tasksService.fetchTasks().subscribe({
+      next: (tasks: Task[]) => {
+        this.tasks = tasks
+      },
+      error: (err) => {
+        if (err.name = "HttpErrorResponse") {
+          this.errorWhileFetchingData = "Backend API cannot be accessed"
+        } else {
+          this.errorWhileFetchingData = err.message;
+        }
+      }
+    })
   }
 }
