@@ -27,7 +27,7 @@ cd TodoList
 
 ### Backend
 
-Install Python dependencies specified in requirements.txt
+Go to backend folder and install Python dependencies specified in requirements.txt
 
 ```bash
 pip install -r requirements.txt
@@ -41,7 +41,7 @@ python server.py
 
 ### Frontend
 
-Install node dependencies specified in node_modules
+Go to frontend folder and install node dependencies specified in node_modules
 
 ```bash
 npm install
